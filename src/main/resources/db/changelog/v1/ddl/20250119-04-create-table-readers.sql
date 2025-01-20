@@ -1,7 +1,7 @@
 --liquibase formatted sql
 --changeset Anikeeva:20250119-04-create-table-readers
 
-create table readers (
+CREATE TABLE readers (
     id uuid,
     first_name varchar not null,
     last_name varchar not null,

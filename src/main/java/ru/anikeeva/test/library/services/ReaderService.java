@@ -24,7 +24,7 @@ public class ReaderService {
         return readerRepository.findDebtors().stream().map(readerMapper::toReaderDTO).toList();
     }
 
-    public Reader findReaderById(UUID id) {
+    public Reader findReaderById(final UUID id) {
         return readerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Читатель не найден"));
     }
 }

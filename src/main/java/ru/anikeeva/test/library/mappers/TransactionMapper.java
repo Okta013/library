@@ -6,7 +6,5 @@ import ru.anikeeva.test.library.entities.Transaction;
 
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
-    Transaction toTransaction(TransactionMapper transactionDTO);
-
     TransactionDTO toTransactionDTO(Transaction transaction);
 }

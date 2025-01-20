@@ -18,7 +18,7 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
     private final AuthorMapper authorMapper;
 
-    public AuthorDTO findMostPopularAuthor(LocalDateTime startDate, LocalDateTime endDate) {
+    public AuthorDTO findMostPopularAuthor(final LocalDateTime startDate, final LocalDateTime endDate) {
         Pageable pageable = PageRequest.of(0, 1);
         List<Author> authors = authorRepository.findMostPopularAuthors(startDate, endDate, pageable);
         Author mostPopularAuthor = authors.isEmpty() ? null : authors.getFirst();

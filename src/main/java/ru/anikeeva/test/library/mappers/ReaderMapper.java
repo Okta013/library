@@ -6,7 +6,5 @@ import ru.anikeeva.test.library.entities.Reader;
 
 @Mapper(componentModel = "spring")
 public interface ReaderMapper {
-    Reader toReader(ReaderDTO readerDTO);
-
     ReaderDTO toReaderDTO(Reader reader);
 }

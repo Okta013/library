@@ -11,3 +11,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  jwt:
+    access_token_validity: 10
+    refresh_token_validity: 30

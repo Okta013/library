@@ -21,7 +21,7 @@ public class TransactionService {
     private final BookService bookService;
 
     @Transactional
-    public TransactionDTO makeTransaction(UUID readerId, UUID bookId) {
+    public TransactionDTO makeTransaction(final UUID readerId, final UUID bookId) {
         Transaction lastTransaction = transactionRepository.findLastTransactionByBookAndReader(readerId, bookId);
         Transaction newTransaction = new Transaction();
         newTransaction.setDate(LocalDateTime.now());

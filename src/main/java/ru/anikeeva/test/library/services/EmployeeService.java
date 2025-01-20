@@ -14,25 +14,16 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Optional<Employee> findByLogin(String login) {
+    public Optional<Employee> findByLogin(final String login) {
         return employeeRepository.findByLogin(login);
     }
 
-    public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
-    }
-
-    public boolean authenticate(String login, String password) {
+    public boolean authenticate(final String login, final String password) {
         Optional<Employee> employeeOpt = findByLogin(login);
         if (employeeOpt.isPresent()) {
             Employee employee = employeeOpt.get();
             return passwordEncoder.matches(password, employee.getPassword());
         }
         return false;
-    }
-
-    public Employee registerEmployee(Employee employee) {
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-        return employeeRepository.save(employee);
     }
 }

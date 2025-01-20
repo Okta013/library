@@ -12,7 +12,7 @@ import java.util.UUID;
 public class BookService {
     private final BookRepository bookRepository;
 
-    public Book findBookById(UUID id) {
+    public Book findBookById(final UUID id) {
         return bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Книга не найдена"));
     }
 }

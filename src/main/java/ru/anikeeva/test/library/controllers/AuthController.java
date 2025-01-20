@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,8 @@ public class AuthController {
     private final EmployeeService employeeService;
     private final JwtUtil jwtUtil;
 
-    private static final long ACCESS_TOKEN_VALIDITY = 10;
-    private static final long REFRESH_TOKEN_VALIDITY = 30;
+    private static final Integer ACCESS_TOKEN_VALIDITY = 10;
+    private static final Integer REFRESH_TOKEN_VALIDITY = 30;
 
     @PostMapping
     @Operation(summary = "Вход в систему", description = "Обеспечивает авторизацию и получение токена")
@@ -53,9 +54,9 @@ public class AuthController {
     {
         String refreshToken = tokenRefreshRequest.refreshToken();
 
-        if (jwtUtil.validateToken(refreshToken)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Недествительный refresh токен");
-        }
+//        if (!jwtUtil.validateToken(refreshToken)) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Недествительный refresh токен");
+//        }
 
         String login = jwtUtil.getLoginFromJwtToken(refreshToken);
         String newAccessToken = jwtUtil.generateToken(login, ACCESS_TOKEN_VALIDITY);
